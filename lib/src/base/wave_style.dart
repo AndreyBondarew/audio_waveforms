@@ -7,6 +7,12 @@ class WaveStyle {
   /// Whether to show line in the middle defaults to true
   final bool showMiddleLine;
 
+  /// andy: added horizontal line
+  final bool showHorizontalLine;
+
+  ///andy: added Start from half width
+  final bool startFromHalfWidth;
+
   /// Space between each wave
   final double spacing;
 
@@ -113,6 +119,7 @@ class WaveStyle {
     this.durationLinesColor = Colors.blueAccent,
     this.gradient,
     this.scaleFactor = 20.0,
-  }) : assert(waveThickness < spacing,
-            "waveThickness can't be greater than spacing");
+    this.showHorizontalLine = true,
+    this.startFromHalfWidth = false,
+  }) : assert(waveThickness < spacing, "waveThickness can't be greater than spacing");
 }

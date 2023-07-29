@@ -143,8 +143,7 @@ class RecorderWavePainter extends CustomPainter {
         style: durationStyle,
       );
 
-      if (_labels[i].offset.dx > -size.width / 2 &&
-          _labels[i].offset.dx < size.width + size.width / 2) {
+      if (_labels[i].offset.dx > -size.width / 2 && _labels[i].offset.dx < size.width + size.width / 2) {
         final textPainter = TextPainter(
           text: textSpan,
           textDirection: TextDirection.ltr,
@@ -161,21 +160,14 @@ class RecorderWavePainter extends CustomPainter {
 
   void _addLabel(Canvas canvas, int i, Size size) {
     canvas.drawLine(
-        Offset(
-            _labelPadding + dragOffset.dx - totalBackDistance.dx, size.height),
-        Offset(_labelPadding + dragOffset.dx - totalBackDistance.dx,
-            size.height + durationLinesHeight),
+        Offset(_labelPadding + dragOffset.dx - totalBackDistance.dx, size.height),
+        Offset(_labelPadding + dragOffset.dx - totalBackDistance.dx, size.height + durationLinesHeight),
         _durationLinePaint);
     _labels.add(
       Label(
-        content: showHourInDuration
-            ? Duration(seconds: i).toHHMMSS()
-            : Duration(seconds: i).inSeconds.toMMSS(),
-        offset: Offset(
-            _labelPadding +
-                dragOffset.dx -
-                totalBackDistance.dx -
-                durationTextPadding,
+        content:
+            showHourInDuration ? Duration(seconds: i).toHHMMSS() : Duration(seconds: i).inSeconds.toMMSS(),
+        offset: Offset(_labelPadding + dragOffset.dx - totalBackDistance.dx - durationTextPadding,
             size.height + labelSpacing),
       ),
     );
@@ -192,34 +184,18 @@ class RecorderWavePainter extends CustomPainter {
 
   void _drawUpperWave(Canvas canvas, Size size, int i) {
     canvas.drawLine(
-        Offset(
-            -totalBackDistance.dx +
-                dragOffset.dx +
-                (spacing * i) -
-                initialPosition,
+        Offset(-totalBackDistance.dx + dragOffset.dx + (spacing * i) - initialPosition + (size.width / 2),
             size.height - bottomPadding),
-        Offset(
-            -totalBackDistance.dx +
-                dragOffset.dx +
-                (spacing * i) -
-                initialPosition,
+        Offset(-totalBackDistance.dx + dragOffset.dx + (spacing * i) - initialPosition + (size.width / 2),
             -(waveData[i] * scaleFactor) + size.height - bottomPadding),
         _wavePaint);
   }
 
   void _drawLowerWave(Canvas canvas, Size size, int i) {
     canvas.drawLine(
-        Offset(
-            -totalBackDistance.dx +
-                dragOffset.dx +
-                (spacing * i) -
-                initialPosition,
+        Offset(-totalBackDistance.dx + dragOffset.dx + (spacing * i) - initialPosition,
             size.height - bottomPadding),
-        Offset(
-            -totalBackDistance.dx +
-                dragOffset.dx +
-                (spacing * i) -
-                initialPosition,
+        Offset(-totalBackDistance.dx + dragOffset.dx + (spacing * i) - initialPosition,
             (waveData[i] * scaleFactor) + size.height - bottomPadding),
         _wavePaint);
   }
@@ -230,9 +206,7 @@ class RecorderWavePainter extends CustomPainter {
 
   void _setScrolledDuration(Size size) {
     setCurrentPositionDuration(
-        (((-totalBackDistance.dx + dragOffset.dx - (size.width / 2)) /
-                    (spacing * updateFrequecy)) *
-                1000)
+        (((-totalBackDistance.dx + dragOffset.dx - (size.width / 2)) / (spacing * updateFrequecy)) * 1000)
             .abs()
             .toInt());
   }
